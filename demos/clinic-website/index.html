@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sample Medical Complex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Hind+Siliguri:wght@400;500;600&display=swap">
+<script>
+  (function(){var l='ar';try{var s=localStorage.getItem('clinicSuiteLang');if(s==='en'||s==='bn'||s==='ar')l=s;}catch(e){}document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();
+</script>
+<style>
+  /* Layout: photography first. Rounded photo hero, floating navigation, photo service cards, browsable treatment categories. Calm blue on soft white. */
+  :root {
+    color-scheme: light;
+    --ink: #0b3f30;
+    --ink-deep: #082e23;
+    --blue: #1a7a5e;
+    --blue-soft: #d8ebe2;
+    --blue-pale: #eef6f1;
+    --ground: #fbf8ef;
+    --white: #ffffff;
+    --line: #e4e0cf;
+    --muted: #56665c;
+    --sand: #e2c98f;
+    --sand-deep: #c9a666;
+    --wa: #128c5e;
+    --sample: #9a6a12;
+    --display: "Readex Pro", "Segoe UI", system-ui, sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  html[lang="ar"] { --body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif; }
+  html[lang="bn"] { --display: "Hind Siliguri", "Nirmala UI", "Segoe UI", sans-serif; --body: "Hind Siliguri", "Nirmala UI", "Segoe UI", sans-serif; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font: 400 17px/1.7 var(--body); }
+  h1, h2, h3, p { margin: 0; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.25; }
+  h1, h2 { text-wrap: balance; }
+  h2 { font-size: clamp(1.75rem, 3.4vw, 2.65rem); color: var(--ink-deep); }
+  h3 { font-size: 1.12rem; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+  .wrap { width: min(1200px, 100%); margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  section { padding-block: clamp(52px, 7vw, 92px); }
+  .eyebrow { font-family: var(--display); font-size: .92rem; font-weight: 500; color: var(--blue); }
+  .head { display: grid; gap: 10px; max-width: 660px; margin-bottom: clamp(26px, 4vw, 42px); }
+  .head.center { margin-inline: auto; text-align: center; justify-items: center; }
+  .head p:not(.eyebrow) { color: var(--muted); }
+  .sample { font-size: .82rem; color: var(--sample); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 22px; border: 1px solid transparent; border-radius: 10px; font-family: var(--display); font-weight: 500; font-size: .98rem; text-decoration: none; white-space: nowrap; transition: background .18s, border-color .18s; }
+  .btn-wa { background: var(--wa); color: #fff; }
+  .btn-wa:hover { background: #0e7850; }
+  .btn-sand { background: var(--sand); color: var(--ink-deep); }
+  .btn-sand:hover { background: var(--sand-deep); }
+  .btn-ghost { border-color: rgba(255,255,255,.7); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.14); }
+  .btn-blue { background: var(--blue); color: #fff; }
+  .btn-blue:hover { background: #125f49; }
+
+  .proto { background: var(--ink-deep); color: #cfe2d8; font-size: .84rem; text-align: center; padding: 7px 16px; }
+  .proto a { color: #fff; font-weight: 600; margin-inline-start: 8px; white-space: nowrap; }
+
+  .nav-shell { position: sticky; top: calc(10px + env(safe-area-inset-top, 0px)); z-index: 20; margin-top: 14px; }
+  .bar { display: flex; align-items: center; gap: 20px; min-height: 70px; padding-inline: 18px; background: rgba(255,255,255,.96); border-radius: 16px; box-shadow: 0 10px 28px -16px rgba(8,46,35,.45); }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
+  .mark { flex: none; width: 40px; height: 40px; }
+  .brand b { font-family: var(--display); font-weight: 500; font-size: 1.04rem; line-height: 1.25; display: block; white-space: nowrap; color: var(--ink-deep); }
+  nav.links { display: flex; gap: 20px; margin-inline-start: auto; font-size: .94rem; }
+  nav.links a { text-decoration: none; white-space: nowrap; }
+  nav.links a:hover { color: var(--blue); }
+  .langs { display: flex; flex: none; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .langs button { background: none; border: 0; padding: 6px 11px; font-size: .86rem; font-weight: 600; min-height: 40px; }
+  .langs button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .bar .btn { min-height: 44px; padding: 8px 16px; font-size: .92rem; }
+
+  .hero { padding-block: 14px 0; }
+  .hero-card { position: relative; border-radius: 24px; overflow: hidden; min-height: clamp(460px, 44vw, 620px); display: flex; align-items: flex-end; background: var(--ink); }
+  .hero-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% 18%; }
+  .hero-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,46,35,.9) 0%, rgba(8,46,35,.62) 34%, rgba(8,46,35,0) 66%); }
+  .hero-copy { position: relative; z-index: 1; color: #fff; padding: clamp(24px, 4vw, 52px); padding-bottom: clamp(62px, 7vw, 92px); display: grid; gap: 14px; justify-items: start; max-width: 820px; }
+  h1 { font-size: clamp(2rem, 3.8vw, 3.1rem); font-weight: 600; }
+  .lede { font-size: 1.12rem; max-width: 36em; color: #eef6f0; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .facts-strip { position: relative; z-index: 2; margin-top: -44px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--white); border-radius: 18px; box-shadow: 0 18px 38px -24px rgba(8,46,35,.5); margin-inline: clamp(12px, 3vw, 40px); }
+  .fact { padding: 20px; display: grid; gap: 2px; align-content: start; min-width: 0; }
+  .fact + .fact { border-inline-start: 1px solid var(--line); }
+  .fact span { font-family: var(--display); font-size: .88rem; color: var(--blue); }
+  .fact p { font-size: .96rem; line-height: 1.5; }
+
+  .intro-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: clamp(28px, 6vw, 76px); align-items: center; }
+  .intro-copy { display: grid; gap: 14px; justify-items: start; }
+  .intro-copy p:not(.eyebrow) { color: var(--muted); }
+  .intro-photos { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; align-items: end; }
+  .intro-photos img { width: 100%; object-fit: cover; border-radius: 18px; }
+  .intro-photos img:first-child { aspect-ratio: 4 / 4.5; }
+  .intro-photos img:last-child { aspect-ratio: 4 / 5; }
+
+  .featured { background: var(--white); }
+  .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 22px); }
+  .card { position: relative; border: 0; padding: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--ink); text-align: start; color: #fff; }
+  .card img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  .card:hover img { transform: scale(1.04); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,46,35,.88), rgba(8,46,35,0) 58%); }
+  .card span { position: absolute; z-index: 1; inset-inline: 18px; bottom: 16px; display: grid; gap: 1px; }
+  .card b { font-family: var(--display); font-weight: 500; font-size: 1.22rem; line-height: 1.3; }
+  .card small { font-size: .9rem; color: #e4efe8; }
+
+  .svc-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr); gap: clamp(16px, 3vw, 32px); align-items: start; }
+  .svc-panel { background: var(--white); border-radius: 20px; padding: clamp(10px, 2vw, 16px) clamp(20px, 3vw, 34px); box-shadow: 0 16px 34px -28px rgba(8,46,35,.6); min-height: 300px; }
+  .svc-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 18px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .svc-row:last-child { border-bottom: 0; }
+  .svc-row .price { font-weight: 600; white-space: nowrap; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+  .svc-row p { grid-column: 1 / -1; color: var(--muted); font-size: .94rem; }
+  .svc-tabs { display: grid; gap: 10px; }
+  .svc-tabs button { background: var(--blue-soft); border: 0; border-radius: 14px; padding: 16px 20px; text-align: start; font-family: var(--display); font-weight: 500; font-size: 1.04rem; color: var(--ink); transition: background .18s; }
+  .svc-tabs button:hover { background: #c5e0d3; }
+  .svc-tabs button[aria-selected="true"] { background: var(--ink); color: #fff; }
+  .svc-note { text-align: center; margin-top: 18px; }
+
+  .finder { background: var(--blue-pale); }
+  .finder-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(26px, 5vw, 64px); align-items: center; }
+  .finder-photo { width: 100%; aspect-ratio: 1 / 1.05; object-fit: cover; border-radius: 22px; }
+  .finder-box { display: grid; gap: 16px; min-width: 0; }
+  .concerns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .concerns button { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 7px 16px; font-size: .95rem; min-height: 42px; }
+  .concerns button:hover { border-color: var(--blue); }
+  .concerns button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .result { background: var(--white); border-radius: 18px; padding: clamp(18px, 3vw, 26px); display: grid; gap: 10px; }
+  .result h3 { font-size: 1.32rem; color: var(--ink-deep); }
+  .result p { color: var(--muted); font-size: .98rem; }
+  .result dl { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .result dl div { background: var(--ground); border-radius: 10px; padding: 10px 14px; min-width: 0; }
+  .result dt { font-size: .82rem; color: var(--muted); }
+  .result dd { margin: 0; font-weight: 600; }
+  .result .btn { justify-self: start; }
+
+  .doc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(26px, 6vw, 72px); align-items: center; }
+  .doc + .doc { margin-top: clamp(36px, 6vw, 64px); }
+  .doc:nth-of-type(even) img { order: 2; }
+  .doc img { width: 100%; aspect-ratio: 5 / 5.2; object-fit: cover; object-position: top; border-radius: 22px; }
+  .doc-copy { display: grid; gap: 10px; }
+  .doc-copy h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); }
+  .doc-copy p:not(.eyebrow) { color: var(--muted); }
+
+  .why { background: var(--white); }
+  .why-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(26px, 6vw, 72px); align-items: center; }
+  .why-grid img { width: 100%; aspect-ratio: 5 / 4.4; object-fit: cover; border-radius: 22px; }
+  .why details { border-bottom: 1px solid var(--line); padding-block: 15px; }
+  .why summary { font-family: var(--display); font-size: 1.18rem; cursor: pointer; color: var(--ink); }
+  .why details:not([open]) summary { color: var(--muted); }
+  .why details p { color: var(--muted); margin-top: 6px; }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 3vw, 30px); counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; gap: 6px; align-content: start; }
+  .steps li::before { content: counter(s); width: 40px; height: 40px; border-radius: 50%; background: var(--blue-soft); display: grid; place-items: center; font-family: var(--display); font-weight: 500; }
+  .steps p { font-size: .96rem; color: var(--muted); }
+
+  .book-wrap { padding-top: 0; }
+  .book-card { background: var(--ink); color: #fff; border-radius: 24px; padding: clamp(24px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(26px, 5vw, 64px); align-items: center; }
+  .book-copy { display: grid; gap: 14px; justify-items: start; }
+  .book-copy h2 { color: #fff; }
+  .book-copy p { color: #d3e4da; }
+  form.book { background: var(--white); color: var(--ink); border-radius: 18px; padding: clamp(18px, 3vw, 26px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .field { display: grid; gap: 5px; min-width: 0; }
+  .field label { font-size: .9rem; font-weight: 500; }
+  .field input, .field select { width: 100%; border: 1px solid #c9d2c4; border-radius: 10px; padding: 10px 12px; min-height: 46px; background: #fff; }
+  .wide { grid-column: 1 / -1; }
+  .done { grid-column: 1 / -1; background: #e3f5ec; color: #0b5c3d; border-radius: 10px; padding: 12px 14px; font-size: .95rem; }
+
+  .faq { max-width: 800px; margin-inline: auto; }
+  .faq details { border-bottom: 1px solid var(--line); padding-block: 14px; }
+  .faq summary { cursor: pointer; font-weight: 600; }
+  .faq details p { color: var(--muted); margin-top: 8px; }
+
+  footer { background: var(--white); border-top: 1px solid var(--line); padding-block: 26px 92px; font-size: .9rem; color: var(--muted); }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 28px; }
+
+  .float { position: fixed; inset-inline-end: max(18px, env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 30; box-shadow: 0 10px 24px -8px rgba(8,46,35,.55); }
+
+  .wa-pop { border: 0; border-radius: 18px; padding: 26px; width: min(420px, calc(100vw - 32px)); color: var(--ink); background: var(--white); }
+  .wa-pop::backdrop { background: rgba(8,46,35,.62); }
+  .wa-pop h2 { font-size: 1.32rem; margin-bottom: 10px; }
+  .wa-pop p { color: var(--muted); margin-bottom: 18px; }
+  .wa-pop .btn { width: 100%; }
+
+  @media (max-width: 980px) {
+    nav.links { display: none; }
+    .langs { margin-inline-start: auto; }
+    .facts-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fact:nth-child(3) { border-inline-start: 0; }
+    .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .intro-grid, .svc-grid, .finder-grid, .why-grid, .book-card { grid-template-columns: minmax(0, 1fr); }
+    .svc-tabs { order: -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .finder-photo { aspect-ratio: 16 / 10; object-position: top; }
+  }
+  @media (max-width: 680px) {
+    .hero-card { display: block; min-height: 0; }
+    .hero-card > img { position: static; height: auto; aspect-ratio: 4 / 3; object-position: 58% 10%; }
+    .hero-card::after { display: none; }
+    .hero-copy { padding: 22px 20px 66px; }
+    .bar { gap: 10px; padding-inline: 12px; }
+    .bar .btn { display: none; }
+    .brand { flex: 1; }
+    .brand span { min-width: 0; }
+    .brand b { white-space: normal; font-size: .94rem; }
+    .doc { grid-template-columns: minmax(0, 1fr); }
+    .doc:nth-of-type(even) img { order: 0; }
+    .facts-strip { grid-template-columns: minmax(0, 1fr); }
+    .fact + .fact { border-inline-start: 0; border-top: 1px solid var(--line); }
+    form.book { grid-template-columns: minmax(0, 1fr); }
+    .svc-tabs button { padding: 12px 14px; font-size: .95rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card img, .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="proto"><span data-t="proto"></span> <a id="backLink" href="../../" data-t="back"></a></div>
+
+<dialog class="wa-pop" id="waPop" aria-labelledby="popTitle">
+  <h2 id="popTitle" data-t="popTitle"></h2>
+  <p data-t="popText"></p>
+  <button class="btn btn-wa" type="button" id="popClose" data-t="popClose"></button>
+</dialog>
+
+<div class="wrap nav-shell">
+  <header class="bar">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#0b3f30"/><path d="M17 9h6v8h8v6h-8v8h-6v-8H9v-6h8z" fill="#e2c98f"/></svg>
+      <span><b data-t="name"></b></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#services" data-t="navServices"></a>
+      <a href="#finder" data-t="navFinder"></a>
+      <a href="#team" data-t="navTeam"></a>
+      <a href="#faq" data-t="navFaq"></a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="ar">العربية</button>
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="bn">বাংলা</button>
+    </div>
+    <a class="btn btn-sand" href="#book" data-t="bookNow"></a>
+  </header>
+</div>
+
+<main id="top">
+  <div class="hero wrap">
+    <div class="hero-card">
+      <img src="assets/photos/doctor-hero.jpg" data-alt="altHero" fetchpriority="high">
+      <div class="hero-copy">
+        <h1 data-t="h1"></h1>
+        <p class="lede" data-t="lede"></p>
+        <div class="cta">
+          <a class="btn btn-wa wa-link" href="#book" data-t="waCta"></a>
+          <a class="btn btn-ghost" href="#services" data-t="seeServices"></a>
+        </div>
+      </div>
+    </div>
+    <div class="facts-strip" id="facts"></div>
+  </div>
+
+  <section>
+    <div class="wrap intro-grid">
+      <div class="intro-copy">
+        <p class="eyebrow" data-t="introEye"></p>
+        <h2 data-t="introTitle"></h2>
+        <p data-t="introText"></p>
+        <a class="btn btn-blue" href="#services" data-t="introCta"></a>
+      </div>
+      <div class="intro-photos">
+        <img src="assets/photos/lab.jpg" data-alt="altClinic" loading="lazy">
+        <img src="assets/photos/bp.jpg" data-alt="altWaiting" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <div class="wrap">
+      <div class="head center"><p class="eyebrow" data-t="featEye"></p><h2 data-t="featTitle"></h2></div>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="head center"><p class="eyebrow" data-t="svcEye"></p><h2 data-t="svcTitle"></h2><p data-t="svcIntro"></p></div>
+      <div class="svc-grid">
+        <div class="svc-panel" id="svcPanel" role="tabpanel"></div>
+        <div class="svc-tabs" id="svcTabs" role="tablist"></div>
+      </div>
+      <p class="sample svc-note" data-t="sampleNote"></p>
+    </div>
+  </section>
+
+  <section class="finder" id="finder">
+    <div class="wrap finder-grid">
+      <img class="finder-photo" src="assets/photos/patient.jpg" data-alt="altPatient" loading="lazy">
+      <div class="finder-box">
+        <div class="head" style="margin:0"><p class="eyebrow" data-t="finderEye"></p><h2 data-t="finderTitle"></h2></div>
+        <div class="concerns" id="concerns"></div>
+        <div class="result" aria-live="polite">
+          <h3 id="rTitle"></h3>
+          <p id="rText"></p>
+          <dl>
+            <div><dt data-t="factRange"></dt><dd id="rRange"></dd></div>
+            <div><dt data-t="factVisits"></dt><dd id="rVisits"></dd></div>
+          </dl>
+          <p class="sample" data-t="finderNote"></p>
+          <a class="btn btn-wa wa-link" href="#book" data-t="finderCta"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap" id="doctors"></div>
+  </section>
+
+  <section class="why">
+    <div class="wrap why-grid">
+      <img src="assets/photos/stethoscope.jpg" data-alt="altWhy" loading="lazy">
+      <div>
+        <div class="head" style="margin-bottom:12px"><p class="eyebrow" data-t="whyEye"></p><h2 data-t="whyTitle"></h2></div>
+        <div id="whyList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head center"><p class="eyebrow" data-t="jEye"></p><h2 data-t="jTitle"></h2></div>
+      <ol class="steps" id="steps"></ol>
+    </div>
+  </section>
+
+  <section class="book-wrap" id="book">
+    <div class="wrap">
+      <div class="book-card">
+        <div class="book-copy">
+          <h2 data-t="bookTitle"></h2>
+          <p data-t="bookIntro"></p>
+          <a class="btn btn-wa wa-link" href="#book" data-t="waCta"></a>
+        </div>
+        <form class="book" id="bookForm">
+          <div class="field"><label for="fName" data-t="fName"></label><input id="fName" required autocomplete="off"></div>
+          <div class="field"><label for="fPhone" data-t="fPhone"></label><input id="fPhone" required inputmode="tel" dir="ltr" autocomplete="off" placeholder="05X XXX XXXX"></div>
+          <div class="field"><label for="fService" data-t="fService"></label><select id="fService"></select></div>
+          <div class="field"><label for="fDay" data-t="fDay"></label><select id="fDay"></select></div>
+          <button class="btn btn-sand wide" type="submit" data-t="fSubmit"></button>
+          <p class="done" id="formDone" role="status" hidden data-t="fDone"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center"><h2 data-t="faqTitle"></h2></div>
+      <div class="faq" id="faqList"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span data-t="footAddr"></span>
+    <span data-t="footLic"></span>
+  </div>
+</footer>
+
+<a class="btn btn-wa float wa-link" href="#book" data-t="waFloat"></a>
+
+<script>
+(() => {
+  // For a real clinic, enter its number with country code and no + or spaces, e.g. '9665XXXXXXXX'.
+  // Empty: buttons show the demo popup. Filled: buttons open WhatsApp directly.
+  const WHATSAPP_NUMBER = '';
+
+  const SAR = { ar: 'ر.س', en: 'SAR', bn: 'রিয়াল' };
+  const n = v => v.toLocaleString('en-US');
+  const money = (l, a, b) => l === 'ar' ? `من ${n(a)} إلى ${n(b)} ${SAR.ar}` : l === 'bn' ? `${n(a)}–${n(b)} ${SAR.bn}` : `${SAR.en} ${n(a)}–${n(b)}`;
+
+  const T = {
+    ar: {
+      proto: 'نموذج تجريبي ببيانات نموذجية. لا يمثل عيادة حقيقية ولا يُرسل أي معلومات.', back: 'العودة إلى Metanor Clinic Suite',
+      popTitle: 'سينقلك هذا الزر إلى واتساب', popText: 'في الموقع الفعلي، يفتح هذا الزر واتساب على هاتف المريض مباشرة في محادثة المجمع، مع رسالة جاهزة للإرسال.', popClose: 'حسناً', waText: 'السلام عليكم، أرغب في حجز موعد.',
+      name: 'المجمع الطبي النموذجي', navServices: 'الخدمات', navFinder: 'أي طبيب أحتاج؟', navTeam: 'الأطباء', navFaq: 'الأسئلة الشائعة', bookNow: 'احجز موعدك',
+      h1: 'رعاية طبية لكل العائلة، بلغتك وفي مكان واحد', lede: 'أطباء وتحاليل وأشعة في المدينة المنورة، بأسعار واضحة وحجز سهل عبر واتساب.',
+      waCta: 'احجز عبر واتساب', seeServices: 'تصفح الخدمات', waFloat: 'واتساب',
+      facts: [['ساعات العمل', 'السبت إلى الخميس، 9 ص إلى 1 ظ و4 م إلى 10 م'], ['الموقع', 'حي نموذجي، المدينة المنورة'], ['اللغات', 'العربية والإنجليزية والبنغالية'], ['حالة طارئة؟', 'اتصل على 997 فوراً']],
+      introEye: 'مرحباً بك في مجمعنا', introTitle: 'كل ما تحتاجه عائلتك تحت سقف واحد', introText: 'من الكشف العام إلى التحاليل والأشعة، نوضح لك كل خطوة وتكلفتها قبل البدء، ونخدمك باللغة التي تفضلها.', introCta: 'تعرف على خدماتنا',
+      featEye: 'الأكثر طلباً', featTitle: 'خدمات يحتاجها المرضى كل يوم',
+      cards: [['general', 'stethoscope', 'الكشف العام', 'للبالغين والعائلة'], ['diagnostic', 'lab', 'التحاليل المخبرية', 'نتائج واضحة وسريعة'], ['special', 'bp', 'القلب والضغط', 'متابعة دورية'], ['packages', 'doctor-1', 'باقات الفحص', 'فحص شامل بسعر واضح']],
+      svcEye: 'ماذا نقدم', svcTitle: 'جميع الخدمات في مكان واحد', svcIntro: 'اختر الفئة لتشاهد الخدمات ونطاق التكلفة. يؤكد الاستقبال السعر النهائي.', sampleNote: 'جميع الأسعار نموذجية، وتُستبدل بأسعار المجمع المعتمدة.',
+      finderEye: 'أي طبيب أحتاج؟', finderTitle: 'ما الذي تود مراجعة الطبيب بشأنه؟', factRange: 'نطاق التكلفة (نموذجي)', factVisits: 'القسم المقترح', finderNote: 'للإرشاد فقط وليس تشخيصاً. يحدد الطبيب الفحص والعلاج المناسبين.', finderCta: 'اسأل المجمع عبر واتساب',
+      whyEye: 'لماذا يختارنا المرضى', whyTitle: 'ما يميز زيارتك لنا',
+      why: [['الأسعار قبل البدء', 'تعرف التكلفة قبل أي كشف أو تحليل.'], ['لغتك مفهومة', 'يتحدث فريقنا العربية والإنجليزية والبنغالية.'], ['كل شيء في مكان واحد', 'الطبيب والمختبر والأشعة دون تنقل.'], ['مواعيد صباحية ومسائية', 'مواعيد تناسب عملك ودراستك.'], ['متابعة بعد الزيارة', 'تصلك التعليمات والتذكيرات عبر واتساب.']],
+      jEye: 'خطوات بسيطة', jTitle: 'زيارتك من أول رسالة حتى المتابعة',
+      steps: [['احجز عبر واتساب', 'اختر القسم والوقت المناسب.'], ['احصل على رقم دورك', 'يصلك رقم الدور ووقت الحضور.'], ['قابل طبيبك', 'يشرح الطبيب حالتك والخطوات التالية.'], ['النتائج والمتابعة', 'نبلغك عند جاهزية النتائج ونذكرك بالمتابعة.']],
+      bookTitle: 'احجز موعدك اليوم', bookIntro: 'اختر الخدمة واليوم المناسب، وسيؤكد فريقنا موعدك. أو ابدأ مباشرة عبر واتساب.',
+      fName: 'الاسم', fPhone: 'رقم الجوال', fService: 'الخدمة', fDay: 'اليوم المفضل', fSubmit: 'اطلب الموعد', fDone: 'تم استلام الطلب في هذا النموذج التجريبي. لم يُرسل أي شيء.',
+      faqTitle: 'الأسئلة الشائعة', footAddr: 'حي نموذجي، المدينة المنورة · 05X XXX XXXX', footLic: 'رقم ترخيص وزارة الصحة: يُضاف من بيانات المجمع',
+      days: ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'],
+      doctors: [['doctor-1', 'طب الأسرة · العربية والإنجليزية', 'د. خالد النموذجي', 'يقدم د. خالد الرعاية للبالغين والعائلات، ويتابع الأمراض المزمنة مثل السكري والضغط.'], ['doctor-3', 'الطب الباطني · البنغالية والعربية والإنجليزية', 'د. رحمن النموذجي', 'يشرح د. رحمن حالتك والخطة العلاجية بلغتك، ويتابع معك الفحوصات اللازمة.']],
+      teamEye: 'تعرف على طبيبك', teamNote: 'اسم وصورة نموذجيان، يُستبدلان ببيانات أطباء المجمع المرخصين.',
+      faq: [['هل أحتاج إلى موعد مسبق؟', 'يفضل الحجز عبر واتساب لتقليل وقت الانتظار، ويستقبل المجمع الحالات حسب توفر الأطباء.'], ['هل تقبلون التأمين؟', 'أرسل بيانات تأمينك عبر واتساب وسيتحقق موظفونا منها.'], ['كيف أعرف أن نتائجي جاهزة؟', 'تصلك رسالة عبر واتساب عند جاهزيتها، دون ذكر تفاصيل طبية.'], ['ماذا أفعل عند ألم الصدر أو صعوبة التنفس؟', 'هذه حالة طارئة. اتصل على 997 أو توجه إلى أقرب قسم طوارئ فوراً.']],
+      altHero: 'طبيب مبتسم يرتدي معطفاً أبيض', altClinic: 'أنابيب تحاليل في مختبر', altWaiting: 'سماعة طبية وجهاز ضغط', altPatient: 'رجل مبتسم', altWhy: 'سماعة طبية'
+    },
+    en: {
+      proto: 'Demo with sample data. It does not represent a real clinic and sends no information.', back: 'Back to Metanor Clinic Suite',
+      popTitle: 'This button takes you to WhatsApp', popText: 'On the live site, this button opens WhatsApp on the patient’s phone, straight into the clinic’s chat, with a message ready to send.', popClose: 'Got it', waText: 'Assalamu alaikum, I would like to book a visit.',
+      name: 'Sample Medical Complex', navServices: 'Services', navFinder: 'Which doctor?', navTeam: 'Doctors', navFaq: 'FAQ', bookNow: 'Book a visit',
+      h1: 'Care for the whole family, in your language and under one roof', lede: 'Doctors, lab tests and X-rays in Madinah, with clear prices and easy booking on WhatsApp.',
+      waCta: 'Book on WhatsApp', seeServices: 'Browse services', waFloat: 'WhatsApp',
+      facts: [['Hours', 'Saturday to Thursday, 9am–1pm and 4pm–10pm'], ['Location', 'Sample District, Madinah'], ['Languages', 'Arabic, English and Bengali'], ['An emergency?', 'Call 997 immediately']],
+      introEye: 'Welcome to our clinic', introTitle: 'Everything your family needs under one roof', introText: 'From a general check-up to lab tests and X-rays, we explain each step and its cost before we start, in the language you prefer.', introCta: 'See our services',
+      featEye: 'Most requested', featTitle: 'The services patients need every day',
+      cards: [['general', 'stethoscope', 'General medicine', 'For adults and families'], ['diagnostic', 'lab', 'Lab tests', 'Clear, quick results'], ['special', 'bp', 'Heart and blood pressure', 'Regular monitoring'], ['packages', 'doctor-1', 'Check-up packages', 'A full check at a clear price']],
+      svcEye: 'What we offer', svcTitle: 'All your services in one place', svcIntro: 'Choose a category to see services and cost ranges. Reception confirms the final price.', sampleNote: 'All prices are sample figures, replaced with the clinic’s approved prices.',
+      finderEye: 'Which doctor do I need?', finderTitle: 'What would you like to see a doctor about?', factRange: 'Cost range (sample)', factVisits: 'Suggested department', finderNote: 'For guidance only, not a diagnosis. Your doctor decides the right tests and treatment.', finderCta: 'Ask the clinic on WhatsApp',
+      whyEye: 'Why patients choose us', whyTitle: 'What sets your visit apart',
+      why: [['Prices before you start', 'Know the cost before any consultation or test.'], ['Your language is understood', 'Our team speaks Arabic, English and Bengali.'], ['Everything in one place', 'Doctor, lab and X-ray without going elsewhere.'], ['Morning and evening visits', 'Appointments that fit around work and school.'], ['Follow-up after your visit', 'Instructions and reminders arrive on WhatsApp.']],
+      jEye: 'Simple steps', jTitle: 'Your visit, from first message to follow-up',
+      steps: [['Book on WhatsApp', 'Choose your department and time.'], ['Get your token', 'Receive your token and arrival time.'], ['See your doctor', 'Your doctor explains the next steps.'], ['Results and follow-up', 'We tell you when results are ready and remind you to follow up.']],
+      bookTitle: 'Book your visit today', bookIntro: 'Choose a service and day, and our team will confirm your appointment. Or start straight away on WhatsApp.',
+      fName: 'Name', fPhone: 'Mobile number', fService: 'Service', fDay: 'Preferred day', fSubmit: 'Request appointment', fDone: 'Request received in this demo. Nothing was sent.',
+      faqTitle: 'Frequently asked questions', footAddr: 'Sample District, Madinah · 05X XXX XXXX', footLic: 'MOH licence number: added from clinic details',
+      days: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      doctors: [['doctor-1', 'Family medicine · Arabic and English', 'Dr. Khalid Sample', 'Dr. Khalid cares for adults and families, and monitors long-term conditions such as diabetes and high blood pressure.'], ['doctor-3', 'Internal medicine · Bengali, Arabic and English', 'Dr. Rahman Sample', 'Dr. Rahman explains your condition and care plan in your language, and follows up on any tests you need.']],
+      teamEye: 'Meet your doctor', teamNote: 'Sample name and photo, replaced with the clinic’s licensed doctors.',
+      faq: [['Do I need an appointment?', 'Booking on WhatsApp is best to reduce waiting. Walk-ins are seen when doctors are available.'], ['Do you accept insurance?', 'Send us your insurance details on WhatsApp and our staff will check them.'], ['How will I know my results are ready?', 'You get a WhatsApp message when they are ready, with no medical details in it.'], ['What should I do for chest pain or trouble breathing?', 'This is an emergency. Call 997 or go to the nearest emergency department immediately.']],
+      altHero: 'A smiling doctor in a white coat', altClinic: 'Test tubes in a laboratory', altWaiting: 'A stethoscope and blood pressure gauge', altPatient: 'A smiling man', altWhy: 'A stethoscope'
+    },
+    bn: {
+      proto: 'নমুনা তথ্যসহ ডেমো। এটি কোনো প্রকৃত ক্লিনিক নয় এবং কোনো তথ্য পাঠায় না।', back: 'Metanor Clinic Suite-এ ফিরে যান',
+      popTitle: 'এই বোতামটি আপনাকে হোয়াটসঅ্যাপে নিয়ে যাবে', popText: 'আসল ওয়েবসাইটে এই বোতাম রোগীর ফোনে সরাসরি ক্লিনিকের হোয়াটসঅ্যাপ চ্যাট খুলবে, মেসেজ লেখা অবস্থায়।', popClose: 'ঠিক আছে', waText: 'আসসালামু আলাইকুম, আমি অ্যাপয়েন্টমেন্ট বুক করতে চাই।',
+      name: 'স্যাম্পল মেডিকেল কমপ্লেক্স', navServices: 'সেবাসমূহ', navFinder: 'কোন ডাক্তার?', navTeam: 'ডাক্তার', navFaq: 'প্রশ্নোত্তর', bookNow: 'বুক করুন',
+      h1: 'পুরো পরিবারের চিকিৎসা, আপনার ভাষায় এক ঠিকানায়', lede: 'মদিনায় ডাক্তার, ল্যাব টেস্ট ও এক্স-রে, স্পষ্ট খরচ এবং হোয়াটসঅ্যাপে সহজ বুকিং।',
+      waCta: 'হোয়াটসঅ্যাপে বুক করুন', seeServices: 'সেবাগুলো দেখুন', waFloat: 'হোয়াটসঅ্যাপ',
+      facts: [['সময়', 'শনিবার থেকে বৃহস্পতিবার, সকাল ৯টা–দুপুর ১টা ও বিকাল ৪টা–রাত ১০টা'], ['ঠিকানা', 'নমুনা এলাকা, মদিনা'], ['ভাষা', 'আরবি, ইংরেজি ও বাংলা'], ['জরুরি অবস্থা?', 'এখনই ৯৯৭ নম্বরে কল করুন']],
+      introEye: 'আমাদের ক্লিনিকে স্বাগতম', introTitle: 'আপনার পরিবারের সব প্রয়োজন এক ছাদের নিচে', introText: 'সাধারণ চেকআপ থেকে ল্যাব টেস্ট ও এক্স-রে পর্যন্ত, প্রতিটি ধাপ ও খরচ আমরা আগেই আপনার পছন্দের ভাষায় বুঝিয়ে বলি।', introCta: 'আমাদের সেবা দেখুন',
+      featEye: 'সবচেয়ে বেশি চাহিদা', featTitle: 'রোগীদের প্রতিদিনের প্রয়োজনীয় সেবা',
+      cards: [['general', 'stethoscope', 'জেনারেল মেডিসিন', 'প্রাপ্তবয়স্ক ও পরিবারের জন্য'], ['diagnostic', 'lab', 'ল্যাব টেস্ট', 'স্পষ্ট ও দ্রুত ফলাফল'], ['special', 'bp', 'হৃদরোগ ও রক্তচাপ', 'নিয়মিত পর্যবেক্ষণ'], ['packages', 'doctor-1', 'চেকআপ প্যাকেজ', 'স্পষ্ট দামে সম্পূর্ণ পরীক্ষা']],
+      svcEye: 'আমাদের সেবা', svcTitle: 'সব সেবা এক ঠিকানায়', svcIntro: 'একটি বিভাগ বেছে নিয়ে সেবা ও খরচের ধারণা দেখুন। চূড়ান্ত খরচ রিসেপশন নিশ্চিত করবে।', sampleNote: 'সব দাম নমুনা, ক্লিনিকের অনুমোদিত দাম দিয়ে পরিবর্তন করা হবে।',
+      finderEye: 'আমার কোন ডাক্তার দরকার?', finderTitle: 'কোন বিষয়ে ডাক্তার দেখাতে চান?', factRange: 'খরচের ধারণা (নমুনা)', factVisits: 'প্রস্তাবিত বিভাগ', finderNote: 'শুধু দিকনির্দেশনার জন্য, এটি রোগ নির্ণয় নয়। সঠিক পরীক্ষা ও চিকিৎসা ডাক্তার ঠিক করবেন।', finderCta: 'হোয়াটসঅ্যাপে জিজ্ঞেস করুন',
+      whyEye: 'রোগীরা কেন আমাদের বেছে নেন', whyTitle: 'আপনার ভিজিটকে যা আলাদা করে',
+      why: [['শুরুর আগেই খরচ', 'পরামর্শ বা টেস্টের আগেই খরচ জেনে নিন।'], ['আপনার ভাষা বোঝা হয়', 'আমাদের টিম আরবি, ইংরেজি ও বাংলা বলে।'], ['সব এক জায়গায়', 'ডাক্তার, ল্যাব ও এক্স-রে একই ঠিকানায়।'], ['সকাল ও সন্ধ্যার সময়', 'কাজ ও পড়াশোনার সাথে মিলিয়ে অ্যাপয়েন্টমেন্ট।'], ['ভিজিটের পর ফলো-আপ', 'নির্দেশনা ও রিমাইন্ডার হোয়াটসঅ্যাপে পাবেন।']],
+      jEye: 'সহজ ধাপ', jTitle: 'প্রথম মেসেজ থেকে ফলো-আপ পর্যন্ত',
+      steps: [['হোয়াটসঅ্যাপে বুক করুন', 'বিভাগ ও সময় বেছে নিন।'], ['টোকেন নিন', 'টোকেন নম্বর ও আসার সময় পাবেন।'], ['ডাক্তার দেখান', 'ডাক্তার পরবর্তী ধাপ বুঝিয়ে বলবেন।'], ['ফলাফল ও ফলো-আপ', 'ফলাফল প্রস্তুত হলে জানাব এবং ফলো-আপের কথা মনে করিয়ে দেব।']],
+      bookTitle: 'আজই অ্যাপয়েন্টমেন্ট নিন', bookIntro: 'সেবা ও দিন বেছে নিন, আমাদের টিম নিশ্চিত করবে। অথবা সরাসরি হোয়াটসঅ্যাপে শুরু করুন।',
+      fName: 'নাম', fPhone: 'মোবাইল নম্বর', fService: 'সেবা', fDay: 'পছন্দের দিন', fSubmit: 'অ্যাপয়েন্টমেন্ট চাই', fDone: 'এই ডেমোতে অনুরোধ নেওয়া হয়েছে। কিছুই পাঠানো হয়নি।',
+      faqTitle: 'সাধারণ প্রশ্ন', footAddr: 'নমুনা এলাকা, মদিনা · 05X XXX XXXX', footLic: 'স্বাস্থ্য মন্ত্রণালয়ের লাইসেন্স নম্বর: ক্লিনিকের তথ্য থেকে যোগ হবে',
+      days: ['শনিবার', 'রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার'],
+      doctors: [['doctor-1', 'ফ্যামিলি মেডিসিন · আরবি ও ইংরেজি', 'ডা. খালিদ (নমুনা)', 'ডা. খালিদ প্রাপ্তবয়স্ক ও পরিবারের চিকিৎসা করেন এবং ডায়াবেটিস ও উচ্চ রক্তচাপের মতো দীর্ঘমেয়াদি রোগ পর্যবেক্ষণ করেন।'], ['doctor-3', 'ইন্টারনাল মেডিসিন · বাংলা, আরবি ও ইংরেজি', 'ডা. রহমান (নমুনা)', 'ডা. রহমান আপনার ভাষায় অবস্থা ও চিকিৎসা পরিকল্পনা বুঝিয়ে বলেন এবং প্রয়োজনীয় টেস্টের ফলো-আপ করেন।']],
+      teamEye: 'আপনার ডাক্তারকে জানুন', teamNote: 'নমুনা নাম ও ছবি, ক্লিনিকের লাইসেন্সপ্রাপ্ত ডাক্তারদের তথ্য দিয়ে পরিবর্তন করা হবে।',
+      faq: [['অ্যাপয়েন্টমেন্ট কি লাগবে?', 'অপেক্ষা কমাতে হোয়াটসঅ্যাপে বুক করা ভালো। ডাক্তার থাকলে সরাসরি এলেও দেখানো যায়।'], ['ইন্সুরেন্স চলে কি?', 'আপনার ইন্সুরেন্সের তথ্য হোয়াটসঅ্যাপে পাঠান, স্টাফ যাচাই করে জানাবেন।'], ['ফলাফল প্রস্তুত হলে কীভাবে জানব?', 'প্রস্তুত হলে হোয়াটসঅ্যাপে মেসেজ পাবেন, তাতে কোনো চিকিৎসা-সংক্রান্ত বিবরণ থাকবে না।'], ['বুকে ব্যথা বা শ্বাসকষ্ট হলে কী করব?', 'এটি জরুরি অবস্থা। এখনই ৯৯৭ নম্বরে কল করুন বা নিকটস্থ জরুরি বিভাগে যান।']],
+      altHero: 'সাদা কোট পরা হাসিমুখ ডাক্তার', altClinic: 'ল্যাবে টেস্ট টিউব', altWaiting: 'স্টেথোস্কোপ ও রক্তচাপ মাপার যন্ত্র', altPatient: 'হাসিমুখ একজন পুরুষ', altWhy: 'স্টেথোস্কোপ'
+    }
+  };
+
+  const CATEGORIES = [
+    { id: 'general', ar: 'الطب العام', en: 'General care', bn: 'সাধারণ চিকিৎসা', items: [
+      { p: [100, 200], ar: ['كشف الطب العام', 'للأعراض الشائعة والمتابعة.'], en: ['General consultation', 'For common symptoms and follow-up.'], bn: ['সাধারণ পরামর্শ', 'সাধারণ উপসর্গ ও ফলো-আপের জন্য।'] },
+      { p: [120, 220], ar: ['طب الأطفال', 'كشف ومتابعة للأطفال.'], en: ['Pediatrics', 'Check-ups and care for children.'], bn: ['শিশু চিকিৎসা', 'শিশুদের চেকআপ ও চিকিৎসা।'] },
+      { p: [150, 280], ar: ['النساء والولادة', 'استشارات ومتابعة.'], en: ['Gynecology', 'Consultations and follow-up.'], bn: ['গাইনি', 'পরামর্শ ও ফলো-আপ।'] }] },
+    { id: 'special', ar: 'التخصصات', en: 'Specialists', bn: 'বিশেষজ্ঞ', items: [
+      { p: [200, 350], ar: ['القلب', 'تقييم القلب والضغط.'], en: ['Cardiology', 'Heart and blood pressure review.'], bn: ['হৃদরোগ', 'হৃদযন্ত্র ও রক্তচাপ মূল্যায়ন।'] },
+      { p: [180, 320], ar: ['العظام', 'آلام المفاصل والظهر.'], en: ['Orthopedics', 'Joint and back problems.'], bn: ['অর্থোপেডিক্স', 'জয়েন্ট ও পিঠের সমস্যা।'] },
+      { p: [150, 300], ar: ['الجلدية', 'مشكلات الجلد الشائعة.'], en: ['Dermatology', 'Common skin problems.'], bn: ['চর্মরোগ', 'ত্বকের সাধারণ সমস্যা।'] },
+      { p: [150, 300], ar: ['الأنف والأذن والحنجرة', 'كشف وعلاج.'], en: ['ENT', 'Ear, nose and throat care.'], bn: ['নাক-কান-গলা', 'পরীক্ষা ও চিকিৎসা।'] }] },
+    { id: 'diagnostic', ar: 'التحاليل والأشعة', en: 'Tests and imaging', bn: 'টেস্ট ও ইমেজিং', items: [
+      { p: [50, 300], ar: ['التحاليل المخبرية', 'يختلف السعر حسب التحليل.'], en: ['Lab tests', 'Price depends on the test.'], bn: ['ল্যাব টেস্ট', 'টেস্ট অনুযায়ী দাম ভিন্ন।'] },
+      { p: [100, 250], ar: ['الأشعة السينية', 'حسب المنطقة المطلوبة.'], en: ['X-ray', 'Depends on the area.'], bn: ['এক্স-রে', 'অংশ অনুযায়ী।'] },
+      { p: [150, 400], ar: ['الموجات فوق الصوتية', 'حسب نوع الفحص.'], en: ['Ultrasound', 'Depends on the scan.'], bn: ['আল্ট্রাসাউন্ড', 'পরীক্ষার ধরন অনুযায়ী।'] }] },
+    { id: 'packages', ar: 'باقات الفحص', en: 'Check-up packages', bn: 'চেকআপ প্যাকেজ', items: [
+      { p: [250, 450], ar: ['الفحص العام', 'كشف وتحاليل أساسية.'], en: ['General check-up', 'A consultation and basic tests.'], bn: ['সাধারণ চেকআপ', 'পরামর্শ ও প্রাথমিক টেস্ট।'] },
+      { p: [200, 400], ar: ['متابعة السكري', 'تحاليل وكشف متابعة.'], en: ['Diabetes review', 'Tests and a follow-up visit.'], bn: ['ডায়াবেটিস ফলো-আপ', 'টেস্ট ও ফলো-আপ ভিজিট।'] },
+      { p: [300, 550], ar: ['فحص ما قبل التوظيف', 'حسب متطلبات جهة العمل.'], en: ['Pre-employment check', 'Based on employer requirements.'], bn: ['চাকরির আগের চেকআপ', 'নিয়োগকর্তার প্রয়োজন অনুযায়ী।'] }] }
+  ];
+
+  const CONCERNS = [
+    { id: 'fever', p: [100, 200], ar: { c: 'حرارة أو سعال', t: 'ابدأ بكشف الطب العام', d: 'يحدد الطبيب بعد الكشف إن كنت تحتاج إلى تحاليل.', v: 'الطب العام' }, en: { c: 'Fever or cough', t: 'Start with general medicine', d: 'After seeing you, the doctor decides whether you need any tests.', v: 'General medicine' }, bn: { c: 'জ্বর বা কাশি', t: 'জেনারেল মেডিসিন দিয়ে শুরু করুন', d: 'দেখার পর ডাক্তার ঠিক করবেন টেস্ট লাগবে কি না।', v: 'জেনারেল মেডিসিন' } },
+    { id: 'child', p: [120, 220], ar: { c: 'طفلي مريض', t: 'طبيب الأطفال هو الخيار المناسب', d: 'إذا كان الطفل يجد صعوبة في التنفس أو لا يستجيب، اتصل على 997 فوراً.', v: 'طب الأطفال' }, en: { c: 'My child is unwell', t: 'A pediatrician is the right start', d: 'If your child struggles to breathe or is not responding, call 997 immediately.', v: 'Pediatrics' }, bn: { c: 'আমার শিশু অসুস্থ', t: 'শিশু বিশেষজ্ঞ দেখানো ভালো', d: 'শিশুর শ্বাসকষ্ট হলে বা সাড়া না দিলে এখনই ৯৯৭ নম্বরে কল করুন।', v: 'শিশু চিকিৎসা' } },
+    { id: 'joint', p: [180, 320], ar: { c: 'ألم المفاصل أو الظهر', t: 'قد يناسبك قسم العظام', d: 'يوضح الطبيب إن كنت تحتاج إلى أشعة أو علاج طبيعي.', v: 'العظام' }, en: { c: 'Joint or back pain', t: 'Orthopedics may suit you', d: 'Your doctor explains whether you need an X-ray or physiotherapy.', v: 'Orthopedics' }, bn: { c: 'জয়েন্ট বা পিঠে ব্যথা', t: 'অর্থোপেডিক্স উপযুক্ত হতে পারে', d: 'এক্স-রে বা ফিজিওথেরাপি লাগবে কি না ডাক্তার জানাবেন।', v: 'অর্থোপেডিক্স' } },
+    { id: 'skin', p: [150, 300], ar: { c: 'مشكلة جلدية', t: 'قد يناسبك قسم الجلدية', d: 'يفحص الطبيب المشكلة ويوضح الخطوات التالية.', v: 'الجلدية' }, en: { c: 'Skin problem', t: 'Dermatology may suit you', d: 'The doctor examines the problem and explains the next steps.', v: 'Dermatology' }, bn: { c: 'ত্বকের সমস্যা', t: 'চর্মরোগ বিভাগ উপযুক্ত হতে পারে', d: 'ডাক্তার পরীক্ষা করে পরবর্তী ধাপ বুঝিয়ে বলবেন।', v: 'চর্মরোগ' } },
+    { id: 'check', p: [250, 450], ar: { c: 'فحص دوري', t: 'باقة الفحص العام', d: 'تشمل كشفاً وتحاليل أساسية، ويمكن تعديلها حسب حالتك.', v: 'باقات الفحص' }, en: { c: 'Routine check-up', t: 'The general check-up package', d: 'It includes a consultation and basic tests, adjusted to your needs.', v: 'Check-up packages' }, bn: { c: 'নিয়মিত চেকআপ', t: 'সাধারণ চেকআপ প্যাকেজ', d: 'এতে পরামর্শ ও প্রাথমিক টেস্ট আছে, প্রয়োজন অনুযায়ী বদলানো যায়।', v: 'চেকআপ প্যাকেজ' } }
+  ];
+
+  const $ = id => document.getElementById(id);
+  const make = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  let lang = document.documentElement.lang;
+  let concern = 'fever', cat = 'general';
+
+  function renderCat() {
+    const c = CATEGORIES.find(x => x.id === cat);
+    $('svcPanel').replaceChildren(...c.items.map(s => {
+      const r = make('div', 'svc-row');
+      r.append(make('h3', '', s[lang][0]), make('span', 'price', money(lang, s.p[0], s.p[1])), make('p', '', s[lang][1]));
+      return r;
+    }));
+    document.querySelectorAll('#svcTabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.c === cat)));
+  }
+  function renderConcern() {
+    const c = CONCERNS.find(x => x.id === concern), copy = c[lang];
+    $('rTitle').textContent = copy.t; $('rText').textContent = copy.d;
+    $('rRange').textContent = money(lang, c.p[0], c.p[1]); $('rVisits').textContent = copy.v;
+    document.querySelectorAll('#concerns button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.c === concern)));
+  }
+
+  function render() {
+    const t = T[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t[el.dataset.t]; });
+    document.querySelectorAll('[data-alt]').forEach(el => { el.alt = t[el.dataset.alt]; });
+    document.querySelectorAll('.langs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        document.querySelectorAll('.wa-link').forEach(a => {
+      if (WHATSAPP_NUMBER) {
+        a.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.waText)}`;
+        a.target = '_blank'; a.rel = 'noopener';
+      } else {
+        a.onclick = e => { e.preventDefault(); $('waPop').showModal(); };
+      }
+    });
+
+    $('facts').replaceChildren(...t.facts.map(([k, v]) => { const d = make('div', 'fact'); d.append(make('span', '', k), make('p', '', v)); return d; }));
+    $('cards').replaceChildren(...t.cards.map(([c, img, name, sub]) => {
+      const b = make('button', 'card'); b.type = 'button';
+      const i = make('img'); i.src = `assets/photos/${img}.jpg`; i.alt = ''; i.loading = 'lazy';
+      const s = make('span'); s.append(make('b', '', name), make('small', '', sub));
+      b.append(i, s);
+      b.onclick = () => { cat = c; renderCat(); $('services').scrollIntoView(); };
+      return b;
+    }));
+    $('svcTabs').replaceChildren(...CATEGORIES.map(c => {
+      const b = make('button', '', c[lang]); b.type = 'button'; b.dataset.c = c.id; b.setAttribute('role', 'tab');
+      b.onclick = () => { cat = c.id; renderCat(); };
+      return b;
+    }));
+    renderCat();
+    $('concerns').replaceChildren(...CONCERNS.map(c => {
+      const b = make('button', '', c[lang].c); b.type = 'button'; b.dataset.c = c.id;
+      b.onclick = () => { concern = c.id; renderConcern(); };
+      return b;
+    }));
+    renderConcern();
+    $('doctors').replaceChildren(...t.doctors.map(([img, role, name, bio]) => {
+      const d = make('article', 'doc');
+      const i = make('img'); i.src = `assets/photos/${img}.jpg`; i.alt = name; i.loading = 'lazy';
+      const c = make('div', 'doc-copy');
+      c.append(make('p', 'eyebrow', t.teamEye), make('h2', '', name), make('p', '', role), make('p', '', bio), make('p', 'sample', t.teamNote));
+      d.append(i, c);
+      return d;
+    }));
+    $('whyList').replaceChildren(...t.why.map(([q, a], i) => {
+      const d = make('details'); d.name = 'why'; if (i === 0) d.open = true;
+      d.append(make('summary', '', q), make('p', '', a));
+      return d;
+    }));
+    $('steps').replaceChildren(...t.steps.map(([k, v]) => { const li = make('li'); li.append(make('h3', '', k), make('p', '', v)); return li; }));
+    $('faqList').replaceChildren(...t.faq.map(([q, a]) => { const d = make('details'); d.append(make('summary', '', q), make('p', '', a)); return d; }));
+    const keepS = $('fService').selectedIndex, keepD = $('fDay').selectedIndex;
+    const all = CATEGORIES.flatMap(c => c.items);
+    $('fService').replaceChildren(...all.map((s, i) => { const o = make('option', '', s[lang][0]); o.value = i; return o; }));
+    $('fDay').replaceChildren(...t.days.map((d, i) => { const o = make('option', '', d); o.value = i; return o; }));
+    if (keepS >= 0) $('fService').selectedIndex = keepS;
+    if (keepD >= 0) $('fDay').selectedIndex = keepD;
+  }
+
+  document.querySelectorAll('.langs button').forEach(b => { b.onclick = () => { lang = b.dataset.lang; try { localStorage.setItem('clinicSuiteLang', lang); } catch (e) {} render(); }; });
+  $('popClose').onclick = () => $('waPop').close();
+  $('waPop').addEventListener('click', e => { if (e.target === $('waPop')) $('waPop').close(); });
+  $('bookForm').addEventListener('submit', e => { e.preventDefault(); $('formDone').hidden = false; });
+  render();
+})();
+</script>
+</body>
+</html>
